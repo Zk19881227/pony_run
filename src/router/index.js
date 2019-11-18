@@ -31,7 +31,6 @@ const routes = [
   { path: '/messageboard', component: MessageBoard },
   { path: '/vedios', component: Vedios },
   { path: '/link', component: Link }
-  
 ]
 
 const router = new VueRouter({
