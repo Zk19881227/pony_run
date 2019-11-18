@@ -10,10 +10,10 @@
             :key="item.id"
             @click="goDetails(item.id)"
           >
-            <img v-lazy="item.img_url" />
+            <img class="image__img" v-lazy="item.img_url" />
             <div class="botInfo">
               <p>{{ item.title }}</p>
-              <p>{{ item.zhaiyao }}</p>
+              <p>{{ item.zhaiyao.slice(0, 50) + '...' }}</p>
             </div>
           </li>
         </ul>
@@ -83,6 +83,12 @@ export default {
   padding: 0 10px;
 }
 
+.image__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .img_list li {
   width: 100%;
   margin: 10px 0;
@@ -105,10 +111,8 @@ export default {
 }
 
 .img_list li .botInfo p {
-  margin: 5px 0;
+  margin: 8px 10px 0 0;
   font-size: 12px;
 }
-img {
-  width: 100%;
-}
+
 </style>
