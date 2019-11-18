@@ -15,6 +15,7 @@ import axios from 'axios'
 
 // 全局注册axios
 Vue.prototype.$http = axios
+axios.defaults.baseURL = 'http://www.liulongbin.top:3005/'
 Vue.config.productionTip = false
 // 注册时间过滤器组件
 Vue.filter('dateFormat', function (originVal) {
