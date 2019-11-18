@@ -3,41 +3,30 @@
     <!-- 搜索关键词 -->
     <form action="/">
       <van-search
-        v-model="value"
         placeholder="请输入搜索关键词"
         show-action
+        v-model="comm"
         @search="onSearch"
-        @cancel="onCancel"
+        @onKeydown="keyLogin(even)"
       />
     </form>
 
     <!-- 搜索历史 -->
-    <div :style="isHiden ? 'display:none' : ''">
-      <div class="pl" :style="isHiden ? 'display:none' : ''">
-        <span class="pr">搜索历史</span>
-        <van-icon name="delete" @click="remove" />
-      </div>
-
-      <div class="jilu">
-        <!-- 历史标签 -->
-        <div :style="isEmpty ? 'display:none' : ''">
-          <van-tag v-for="item in keyWords" :key="item.id" class="tag">{{
-            item
-          }}</van-tag>
-        </div>
-        <!-- 无搜索历史 -->
-        <div
-          class="van-divider van-divider--hairline van-divider--content-center"
-          style="border-color: rgb(204, 204, 204); color: rgb(51, 51, 51); padding: 0px 16px;"
-          :style="!isEmpty ? 'display:none' : ''"
-        >
-          暂无搜索历史
-        </div>
+    <div class="pl" :style="!isHiden ? 'visibility:hidden' : ''">
+      <span class="pr">搜索历史</span>
+      <van-icon name="delete" />
+    </div>
+    <!-- 暂无搜索历史 -->
+    <div class="jilu">
+      <div
+        class="van-divider van-divider--hairline van-divider--content-center"
+        style="border-color: rgb(204, 204, 204); color: rgb(51, 51, 51); padding: 0px 16px;"
+      >
+        暂无搜索历史
       </div>
     </div>
-
     <!-- 搜索结果 -->
-    <div class="searchBox" :style="!isHiden ? 'display:none' : ''">
+    <div class="searchBox" :style="!isHiden ? 'visibility:hidden' : ''">
       <van-cell-group>
         <van-cell
           :title="item.name"
@@ -56,34 +45,24 @@ export default {
     return {
       searchResult: [],
       isHiden: false,
-      keyWords: [],
-      value: '',
-      isEmpty: false
+      comm: 'qqq'
     }
   },
   created() {
-    this.keyWords = window.localStorage.keyWords.split(',')
-    this.isEmpty = this.keyWords.length === 0
+    this.onSearch()
   },
   methods: {
-    async onSearch(e) {
+    async onSearch() {
       const { data: res } = await this.$http.get(
         `http://www.liulongbin.top:3005/api/getprodlist`
       )
       this.searchResult = res.message
-      console.log(this.isHiden)
-      this.isHiden = true
-      this.keyWords.push(this.value)
-      this.value = ''
-      window.localStorage.keyWords = this.keyWords
-      this.isEmpty = this.keyWords.length === 0
+      console.log(res)
     },
-    onCancel() {
-      this.isHiden = false
-    },
-    remove() {
-      this.keyWords = []
-      this.isEmpty = true
+    keyLogin(even) {
+      if (even.keyCode === 13) {
+        this.onSearch()
+      }
     }
   }
 }
@@ -151,9 +130,5 @@ van-divider--hairline:before {
 .van-divider--content-right:after {
   margin-left: 16px;
   content: '';
-}
-.tag {
-  text-align: center;
-  margin: 0 3px;
 }
 </style>
