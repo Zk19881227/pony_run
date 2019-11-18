@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, NavBar, Tabbar, TabbarItem, Grid, GridItem, Card, Swipe, SwipeItem, Lazyload, Image, Stepper, Toast, Icon, List, PullRefresh, Cell, Notify, Field, ImagePreview, CellGroup, Tabs, Tab } from 'vant'
+import { Button, NavBar, Tabbar, TabbarItem, Grid, GridItem, Card, Swipe, SwipeItem, Lazyload, Image, Stepper, Toast, Icon, List, PullRefresh, Cell, Notify, Field, ImagePreview, CellGroup, Tabs, Tab, Search, Tag } from 'vant'
 
 Vue.use(Button)
 Vue.use(NavBar)
@@ -25,3 +25,6 @@ Vue.use(ImagePreview)
 Vue.use(CellGroup)
 Vue.use(Tabs)
 Vue.use(Tab)
+Vue.use(Search)
+Vue.use(CellGroup)
+Vue.use(Tag)
