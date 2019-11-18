@@ -27,7 +27,7 @@ const routes = [
   { path: '/photosharing/list', component: PhotoSharingList },
   { path: '/photosharing/details', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },
-  { path: '/goods/details', component: GoodsDetails },
+  { path: '/goods/details/:id', component: GoodsDetails },
   { path: '/messageboard', component: MessageBoard },
   { path: '/vedios', component: Vedios },
   { path: '/link', component: Link }
