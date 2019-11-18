@@ -9,6 +9,9 @@ import './assets/css/globle.css'
 import './assets/font/iconfont.css'
 // 导入axios
 import axios from 'axios'
+// 导入图片懒加载
+// import VueLazyload from 'vue-lazyload'
+// Vue.use(VueLazyload)
 
 // 全局注册axios
 Vue.prototype.$http = axios
