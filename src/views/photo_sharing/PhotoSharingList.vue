@@ -10,7 +10,7 @@
             :key="item.id"
             @click="goDetails(item.id)"
           >
-            <img class="image__img" v-lazy="item.img_url" />
+            <img class="van-image__img" v-lazy="item.img_url" />
             <div class="botInfo">
               <p>{{ item.title }}</p>
               <p>{{ item.zhaiyao.slice(0, 50) + '...' }}</p>
@@ -83,7 +83,7 @@ export default {
   padding: 0 10px;
 }
 
-.image__img {
+.van-image__img {
   display: block;
   width: 100%;
   height: 100%;
@@ -115,4 +115,7 @@ export default {
   font-size: 12px;
 }
 
+img {
+  object-fit: cover!important;
+}
 </style>

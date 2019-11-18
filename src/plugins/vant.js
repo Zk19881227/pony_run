@@ -1,5 +1,15 @@
 import Vue from 'vue'
-import { Button, NavBar, Tabbar, TabbarItem, Grid, GridItem, Tabs, Tab, Lazyload } from 'vant'
+import {
+  Button,
+  NavBar,
+  Tabbar,
+  TabbarItem,
+  Grid,
+  GridItem,
+  Tabs,
+  Tab,
+  Lazyload
+} from 'vant'
 
 Vue.use(Button)
 Vue.use(NavBar)
