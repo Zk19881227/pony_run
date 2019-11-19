@@ -2,13 +2,7 @@
   <div>
     <!-- 搜索关键词 -->
     <form action="/">
-      <van-search
-        v-model="value"
-        placeholder="请输入搜索关键词"
-        show-action
-        @search="onSearch"
-        @cancel="onCancel"
-      />
+      <van-search v-model="value" placeholder="请输入搜索关键词" show-action @search="onSearch" @cancel="onCancel" />
     </form>
 
     <!-- 搜索历史 -->
@@ -21,9 +15,7 @@
       <div class="jilu">
         <!-- 历史标签 -->
         <div :style="isEmpty ? 'display:none' : ''">
-          <van-tag v-for="item in keyWords" :key="item.id" class="tag">{{
-            item
-          }}</van-tag>
+          <van-tag v-for="item in keyWords" :key="item.id" class="tag">{{ item }}</van-tag>
         </div>
         <!-- 无搜索历史 -->
         <div
@@ -36,21 +28,22 @@
       </div>
     </div>
 
-    <!-- 搜索结果 -->
-    <div class="searchBox" :style="!isHiden ? 'display:none' : ''">
-      <van-cell-group>
-        <van-cell
-          :title="item.name"
-          :value="item.ctime"
-          v-for="item in searchResult"
-          :key="item.id"
-        />
-      </van-cell-group>
-    </div>
+    <van-swipe-cell :on-close="onClose" v-for="item in searchResult" :key="item.id">
+      <!-- 搜索结果 -->
+      <div class="searchBox" :style="!isHiden ? 'display:none' : ''">
+        <van-cell-group>
+          <van-cell :title="item.name" :value="item.ctime" />
+        </van-cell-group>
+      </div>
+      <template slot="right">
+        <van-button square type="danger" @click="rede(item.id)" text="删除" class="delete" />
+      </template>
+    </van-swipe-cell>
   </div>
 </template>
 
 <script>
+import { Dialog, Notify } from 'vant'
 export default {
   data() {
     return {
@@ -67,9 +60,7 @@ export default {
   },
   methods: {
     async onSearch(e) {
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getprodlist`
-      )
+      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getprodlist`)
       this.searchResult = res.message
       console.log(this.isHiden)
       this.isHiden = true
@@ -84,12 +75,42 @@ export default {
     remove() {
       this.keyWords = []
       this.isEmpty = true
+    },
+    onClose(clickPosition, instance) {
+      switch (clickPosition) {
+        case 'cell':
+        case 'outside':
+          instance.close()
+          break
+        case 'right':
+          // Dialog.confirm({
+          //   message: '确定删除吗？'
+          // }).then(() => {
+          //   instance.close()
+          // })
+          break
+      }
+    },
+    rede(id) {
+      Dialog.confirm({
+        title: '警告',
+        message: '请确认删除？'
+      })
+        .then(() => {
+          const index = this.searchResult.forEach(item => item.id === id)
+          this.searchResult.splice(index, 1)
+          Notify({ type: 'success', message: '删除成功' })
+        })
+        .catch(() => {
+          Notify({ type: 'danger', message: '已取消删除' })
+        })
     }
   }
 }
 </script>
 
-<style lang="less" scoped>.pl {
+<style lang="less" scoped>
+.pl {
   display: flex;
   margin: 12px 10px;
   font-size: 15px;
@@ -154,5 +175,12 @@ van-divider--hairline:before {
 .tag {
   text-align: center;
   margin: 0 3px;
+}
+.van-field {
+  height: 100%;
+  border: 0;
+}
+.delete {
+  height: 100%;
 }
 </style>
