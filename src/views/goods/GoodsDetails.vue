@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .add {
   padding: 0 10px;
   height: 850px;

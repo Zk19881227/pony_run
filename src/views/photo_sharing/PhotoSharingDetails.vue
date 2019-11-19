@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .van-panel {
   padding: 0 !important;
 }
