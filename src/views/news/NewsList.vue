@@ -1,18 +1,8 @@
 <template>
   <div>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        :offset="300"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
-        <van-cell
-          v-for="item in newslist"
-          :key="item.id"
-          @click="goNewsDetails(item.id)"
-        >
+      <van-list v-model="loading" :finished="finished" :offset="300" finished-text="没有更多了" @load="onLoad">
+        <van-cell v-for="item in newslist" :key="item.id" @click="goNewsDetails(item.id)">
           <div class="box">
             <div class="pic"><img :src="item.img_url" alt="" /></div>
             <div class="tt">

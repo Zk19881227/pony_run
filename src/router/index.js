@@ -22,16 +22,15 @@ const routes = [
   { path: '/member', component: Member },
   { path: '/shopcart', component: ShopCart },
   { path: '/search', component: Search },
-  { path: '/newslist', component: NewsList },
-  { path: '/newslist/details', component: NewsDetails },
+  { path: '/news/list', component: NewsList },
+  { path: '/news/details/:id', component: NewsDetails },
   { path: '/photosharing/list', component: PhotoSharingList },
-  { path: '/photosharing/details', component: PhotoSharingDetails },
+  { path: '/photosharing/details/:id', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },
-  { path: '/goods/details', component: GoodsDetails },
+  { path: '/goods/details/:id', component: GoodsDetails },
   { path: '/messageboard', component: MessageBoard },
   { path: '/vedios', component: Vedios },
   { path: '/link', component: Link }
-  
 ]
 
 const router = new VueRouter({
