@@ -43,7 +43,7 @@ export default {
     // 获取图片列表页面上面的分类信息数据
     async getPhotoList() {
       const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getimgcategory`
+        `/api/getimgcategory`
       )
       // console.log(res)
       // 向 message 数组中，使用 unshift 方法手动添加"全部"对象
@@ -54,7 +54,7 @@ export default {
     // 点击首页图片分享进入列表后直接获取“全部”选项所有数据
     async getAllList() {
       const { data: res } = await this.$http.get(
-        'http://www.liulongbin.top:3005/api/getimages/0'
+        '/api/getimages/0'
       )
       this.picList = res.message
     },
@@ -63,7 +63,7 @@ export default {
     async toggleTab(index) {
       this.cateId = this.message[index].id
       const { data: res } = await this.$http.get(
-        'http://www.liulongbin.top:3005/api/getimages/' + this.cateId
+        '/api/getimages/' + this.cateId
       )
       this.picList = res.message
       // console.log(this.picList)
@@ -72,13 +72,13 @@ export default {
     // 点击图片跳转到对应的图片详情
     goDetails(id) {
       // 通过编程式导航跳转到对应图片id的图片详情
-      this.$router.push('/api/getthumimages/' + id)
+      this.$router.push('/photosharing/details/' + id)
     }
   }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .img_list {
   padding: 0 10px;
 }

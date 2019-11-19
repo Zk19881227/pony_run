@@ -89,8 +89,7 @@ export default {
 }
 </script>
 
-<style>
-.pl {
+<style lang="less" scoped>.pl {
   display: flex;
   margin: 12px 10px;
   font-size: 15px;
