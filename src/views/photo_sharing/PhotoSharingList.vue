@@ -5,11 +5,7 @@
       <van-tab v-for="item in message" :title="item.title" :key="item.id">
         <!-- 图片列表 -->
         <ul class="img_list">
-          <li
-            v-for="item in picList"
-            :key="item.id"
-            @click="goDetails(item.id)"
-          >
+          <li v-for="item in picList" :key="item.id" @click="goDetails(item.id)">
             <img class="van-image__img" v-lazy="item.img_url" />
             <div class="botInfo">
               <p>{{ item.title }}</p>
@@ -116,6 +112,6 @@ export default {
 }
 
 img {
-  object-fit: cover!important;
+  object-fit: cover !important;
 }
 </style>
