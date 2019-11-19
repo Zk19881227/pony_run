@@ -50,13 +50,12 @@ export default {
   },
   methods: {
     async getPhotoSharing() {
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`)
+      const { data: res } = await this.$http.get(`/api/getimageInfo/${this.$route.params.id}`)
       this.photoSharing = res.message[0]
       this.photoSharing.add_time = this.photoSharing.add_time.slice(0, 10)
-      console.log()
     },
     async getPhotoHumimage() {
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`)
+      const { data: res } = await this.$http.get(`/api/getthumimages/${this.$route.params.id}`)
       this.photoHumimage = res.message
       this.photoHumimage.forEach(item => {
         this.photoHumimageList.push(item.src)
@@ -75,7 +74,7 @@ export default {
       if (this.message.trim().length === 0) {
         return Toast('请输入内容')
       }
-      const { data: res } = await this.$http.post(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`, { content: this.message })
+      const { data: res } = await this.$http.post(`/api/postcomment/${this.$route.params.id}`, { content: this.message })
       if (res.status !== 0) {
         return Toast.fail('评论失败')
       }
@@ -85,12 +84,12 @@ export default {
     },
     async getMoreComment() {
       this.index++
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}?pageindex=${this.index}`)
+      const { data: res } = await this.$http.get(`/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments.push(...res.message)
     },
     async getComments() {
       this.index = 1
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
+      const { data: res } = await this.$http.get(`/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments = res.message
     }
   }
