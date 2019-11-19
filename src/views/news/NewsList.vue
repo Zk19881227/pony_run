@@ -81,7 +81,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .van-cell {
   padding: 0;
 }
