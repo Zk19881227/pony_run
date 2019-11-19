@@ -8,7 +8,7 @@
             <div class="tt">
               <div class="title">{{ item.title }}</div>
               <div class="content">
-                <div class="time">发布时间： {{ item.add_time }}</div>
+                <div class="time">发布时间： {{ item.add_time.slice(0, 10) }}</div>
                 <div class="click">点击： {{ item.click }}</div>
               </div>
             </div>
