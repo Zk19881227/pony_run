@@ -14,7 +14,7 @@
     <!-- 主菜单 -->
     <div class="menu_icon">
       <van-grid clickable :column-num="3" :border="false">
-        <van-grid-item class="nav_icon" icon="location-o" text="新闻资讯" to="/newslist">
+        <van-grid-item class="nav_icon" icon="location-o" text="新闻资讯" to="/news/list">
           <img class="nav_icon" src="../assets/home_menu_icon/menu1.png" alt />
           <p class="nav_icon_title">新闻资讯</p>
         </van-grid-item>
@@ -63,9 +63,8 @@ export default {
       this.$router.go(-1)
     },
     async getPicList() {
-      const { data: res } = await this.$http.get(
-        'http://www.liulongbin.top:3005/api/getlunbo'
-      )
+      console.log(1)
+      const { data: res } = await this.$http.get('/api/getlunbo')
       this.images = res.message
       console.log(this.images)
     },
