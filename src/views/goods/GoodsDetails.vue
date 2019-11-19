@@ -20,7 +20,6 @@
           <i>￥ {{getList.sell_price}}</i>
         </span>
       </div>
-
       <!-- 购买数量 -->
       <div class="integer">
         购买数量：
@@ -33,7 +32,6 @@
         <van-button type="danger" @click="onClickButton">加入购物车</van-button>
       </div>
     </div>
-
     <!-- 商品信息 -->
     <div class="Tab" :model="getList">
       <div class="Tabs">商品参数</div>
@@ -43,7 +41,6 @@
         <p>上架时间：{{getList.add_time}}</p>
       </div>
     </div>
-
     <!-- 图文评论 -->
     <div>
       <van-button size="large" class="Row">图文介绍</van-button>
