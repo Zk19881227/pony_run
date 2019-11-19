@@ -2,7 +2,7 @@
   <!-- 下拉刷新 -->
   <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
     <!-- 列表加载 -->
-    <van-list v-model="loading" :finished="finished" @load="onLoad" :offset="10">
+    <van-list v-model="loading" :finished="finished" @load="onLoad" :offset="10" finished-text="没有更多了">
       <!-- 循环渲染商品列表 -->
       <div class="van-cell_value" v-for="item in list" :key="item.id" @click="handleRoadDetail(item.id)">
         <div class="van-image">
@@ -69,8 +69,8 @@ export default {
         this.finished = false
         this.list = []
         this.message.number = 1
+        this.onLoad()
         this.getGoodsList()
-        // this.onLoad()
       }, 500)
     },
 
@@ -84,24 +84,20 @@ export default {
         setTimeout(async () => {
           this.loading = true
 
-          // if (this.list.length >= res.message.length) {
-          //   this.finished = true
-          // }
           this.message.number += 1
           const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getgoods?pageindex=${this.message.number}`, {
             params: this.message.pageindex
           })
-          // this.loading = false
           // 把服务器第一页和第二页的数据通过...(拓展运算符)合并为一个新数组,赋值给列表数组
           this.list = [...this.list, ...res.message]
-          // console.log(this.list)
+          this.loading = false
           if (this.list.length >= res.message.length) {
             this.finished = true
           }
         }, 500)
       }
       console.log(res.status)
-      return false
+      this.finished = true
     },
 
     // 跳转详情页
@@ -119,7 +115,7 @@ export default {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  margin: 5px 10px;
+  margin: 15px 10px 50px 10px;
 }
 
 .van-cell_value {
