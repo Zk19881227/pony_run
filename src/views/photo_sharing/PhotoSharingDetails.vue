@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 0px 5px; height: 10000px;">
+  <div style="padding: 0px 5px; margin-bottom: 150px;">
     <h4 class="h4">{{ photoSharing.title }}</h4>
     <p>
       <span class="time">添加时间：{{ photoSharing.add_time }}</span>
@@ -50,12 +50,13 @@ export default {
   },
   methods: {
     async getPhotoSharing() {
-      const { data: res } = await this.$http.get('http://www.liulongbin.top:3005/api/getimageInfo/49')
+      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`)
       this.photoSharing = res.message[0]
       this.photoSharing.add_time = this.photoSharing.add_time.slice(0, 10)
+      console.log()
     },
     async getPhotoHumimage() {
-      const { data: res } = await this.$http.get('http://www.liulongbin.top:3005/api/getthumimages/49')
+      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`)
       this.photoHumimage = res.message
       this.photoHumimage.forEach(item => {
         this.photoHumimageList.push(item.src)
@@ -74,7 +75,7 @@ export default {
       if (this.message.trim().length === 0) {
         return Toast('请输入内容')
       }
-      const { data: res } = await this.$http.post(`http://www.liulongbin.top:3005/api/postcomment/49`, { content: this.message })
+      const { data: res } = await this.$http.post(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`, { content: this.message })
       if (res.status !== 0) {
         return Toast.fail('评论失败')
       }
@@ -84,11 +85,12 @@ export default {
     },
     async getMoreComment() {
       this.index++
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getcomments/49?pageindex=${this.index}`)
+      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments.push(...res.message)
     },
     async getComments() {
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getcomments/49?pageindex=${this.index}`)
+      this.index = 1
+      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments = res.message
     }
   }
