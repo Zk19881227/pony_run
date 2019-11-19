@@ -11,7 +11,7 @@
         <img :src="item.src" />
       </li>
     </ul>
-    <div>{{ photoSharing.content }}</div>
+    <div v-html="photoSharing.content">{{ photoSharing.content }}</div>
     <div style="padding: 0px 5px;">
       <h4>发表评论</h4>
       <hr />
@@ -96,7 +96,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .van-panel {
   padding: 0 !important;
 }

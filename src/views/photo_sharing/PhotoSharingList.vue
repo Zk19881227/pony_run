@@ -38,7 +38,7 @@ export default {
   methods: {
     // 获取图片列表页面上面的分类信息数据
     async getPhotoList() {
-      const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getimgcategory`)
+      const { data: res } = await this.$http.get(`/api/getimgcategory`)
       // console.log(res)
       // 向 message 数组中，使用 unshift 方法手动添加"全部"对象
       res.message.unshift({ title: '全部', id: 0 })
@@ -47,14 +47,14 @@ export default {
 
     // 点击首页图片分享进入列表后直接获取“全部”选项所有数据
     async getAllList() {
-      const { data: res } = await this.$http.get('http://www.liulongbin.top:3005/api/getimages/0')
+      const { data: res } = await this.$http.get('/api/getimages/0')
       this.picList = res.message
     },
 
     // 获取点击首页上的“图片分享”后进入到的列表数据
     async toggleTab(index) {
       this.cateId = this.message[index].id
-      const { data: res } = await this.$http.get('http://www.liulongbin.top:3005/api/getimages/' + this.cateId)
+      const { data: res } = await this.$http.get('/api/getimages/' + this.cateId)
       this.picList = res.message
       // console.log(this.picList)
     },
@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .img_list {
   padding: 0 10px;
 }
