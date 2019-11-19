@@ -32,7 +32,7 @@
       <!-- 搜索结果 -->
       <div class="searchBox" :style="!isHiden ? 'display:none' : ''">
         <van-cell-group>
-          <van-cell :title="item.name" :value="item.ctime" />
+          <van-cell :title="item.name" :value="item.ctime.slice(0, 10)" />
         </van-cell-group>
       </div>
       <template slot="right">
