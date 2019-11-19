@@ -25,7 +25,7 @@ const routes = [
   { path: '/newslist', component: NewsList },
   { path: '/newslist/details/:id', component: NewsDetails },
   { path: '/photosharing/list', component: PhotoSharingList },
-  { path: '/photosharing/details', component: PhotoSharingDetails },
+  { path: '/photosharing/details/:id', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },
   { path: '/goods/details/:id', component: GoodsDetails },
   { path: '/messageboard', component: MessageBoard },
