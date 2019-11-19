@@ -17,15 +17,8 @@
       <div style="padding: 0px 5px;">
         <h4>发表评论</h4>
         <hr />
-        <van-field
-          v-model="message"
-          autosize
-          type="textarea"
-          placeholder="请输入留言"
-        />
-        <van-button type="primary" size="large" class="btn1" @click="addComment"
-          >发表评论</van-button
-        >
+        <van-field v-model="message" autosize type="textarea" placeholder="请输入留言" />
+        <van-button type="primary" size="large" class="btn1" @click="addComment">发表评论</van-button>
         <div v-for="(item, i) in comments" :key="i">
           <div class="title">
             <span>第{{ i + 1 }}楼</span>
@@ -34,9 +27,7 @@
           </div>
           <div class="body">{{ item.content }}</div>
         </div>
-        <van-button color="#7232dd" plain class="btn2" @click="getMoreComment"
-          >加载更多</van-button
-        >
+        <van-button color="#7232dd" plain class="btn2" @click="getMoreComment">加载更多</van-button>
       </div>
     </footer>
   </div>
@@ -61,9 +52,9 @@ export default {
     // 获取文章详情
     async getDetails() {
       // 获取地址栏id
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getnew/${this.$route.params.id}`
-      )
+      const { data: res } = await this.$http.get(`/api/getnew/${this.$route.params.id}`)
+      // console.log(this.$route.params.id)
+
       // console.log(res)
       if (res.status !== 0) {
         return this.$toast('获取参数失败!')
@@ -76,12 +67,7 @@ export default {
       if (this.message.trim().length === 0) {
         return Toast('请输入内容')
       }
-      const {
-        data: res
-      } = await this.$http.post(
-        `http://www.liulongbin.top:3005/api/postcomment/${this.$route.params.id}`,
-        { content: this.message }
-      )
+      const { data: res } = await this.$http.post(`/api/postcomment/${this.$route.params.id}`, { content: this.message })
       if (res.status !== 0) {
         return Toast.fail('评论失败')
       }
@@ -92,16 +78,13 @@ export default {
     // 加载更多
     async getMoreComment() {
       this.index++
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`
-      )
+      const { data: res } = await this.$http.get(`/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments.push(...res.message)
     },
     // 获取评论
     async getComments() {
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`
-      )
+      this.index = 1
+      const { data: res } = await this.$http.get(`/api/getcomments/${this.$route.params.id}?pageindex=${this.index}`)
       this.comments = res.message
     }
   }
