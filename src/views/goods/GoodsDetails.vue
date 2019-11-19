@@ -20,7 +20,6 @@
           <i>￥ {{getList.sell_price}}</i>
         </span>
       </div>
-
       <!-- 购买数量 -->
       <div class="integer">
         购买数量：
@@ -33,17 +32,15 @@
         <van-button type="danger" @click="onClickButton">加入购物车</van-button>
       </div>
     </div>
-
     <!-- 商品信息 -->
     <div class="Tab" :model="getList">
       <div class="Tabs">商品参数</div>
       <div class="quantity">
         <p>商品货号：{{getList.goods_no}}</p>
         <p>库存情况：{{getList.stock_quantity}}件</p>
-        <p>上架时间：{{getList.add_time}}</p>
+        <p>上架时间：{{getList.add_time |dateFormat}}</p>
       </div>
     </div>
-
     <!-- 图文评论 -->
     <div>
       <van-button size="large" class="Row">图文介绍</van-button>
@@ -54,7 +51,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       images: {},
       getList: [],
@@ -72,7 +69,7 @@ export default {
     async Details() {
       const { data: res } = await this.$http.get(`http://www.liulongbin.top:3005/api/getthumimages/${this.$route.params.id}`)
       this.images = res.message
-      const { data: arr } = await this.$http.get(`http://www.liulongbin.top:3005/api/goods/getinfo/88${this.$route.params.id}`)
+      const { data: arr } = await this.$http.get(`http://www.liulongbin.top:3005/api/goods/getinfo/${this.$route.params.id}`)
       this.getList = arr.message[0]
     },
     onClickButton() {
@@ -114,7 +111,7 @@ export default {
 <style scoped>
 .add {
   padding: 0 10px;
-  height: 850px;
+  height: 830px;
 }
 .swiper {
   height: 230px;
@@ -131,6 +128,9 @@ export default {
   position: relative;
 }
 .van-image {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   width: 200px;
   height: 200px;
   display: block;
@@ -140,6 +140,8 @@ export default {
 }
 .title {
   margin: 0 15px;
+  background: #fff;
+  font-size: 14px;
   border-bottom: 1px solid #ccc;
 }
 .market {
