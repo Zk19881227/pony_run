@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 h1 {
   margin: 10px;
   text-align: center;

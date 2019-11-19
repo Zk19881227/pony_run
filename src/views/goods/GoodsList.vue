@@ -130,7 +130,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .van-list {
   display: flex;
   flex-wrap: wrap;
