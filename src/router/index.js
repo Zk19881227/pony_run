@@ -23,11 +23,11 @@ const routes = [
   { path: '/shopcart', component: ShopCart },
   { path: '/search', component: Search },
   { path: '/newslist', component: NewsList },
-  { path: '/newslist/details', component: NewsDetails },
+  { path: '/newslist/details/:id', component: NewsDetails },
   { path: '/photosharing/list', component: PhotoSharingList },
   { path: '/photosharing/details', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },
-  { path: '/goods/details', component: GoodsDetails },
+  { path: '/goods/details/:id', component: GoodsDetails },
   { path: '/messageboard', component: MessageBoard },
   { path: '/vedios', component: Vedios },
   { path: '/link', component: Link }

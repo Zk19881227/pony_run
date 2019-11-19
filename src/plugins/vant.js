@@ -1,18 +1,5 @@
 import Vue from 'vue'
-import {
-  Button,
-  NavBar,
-  Tabbar,
-  TabbarItem,
-  Grid,
-  GridItem,
-  Card,
-  Image,
-  List,
-  PullRefresh,
-  Toast,
-  Cell
-} from 'vant'
+import { Button, NavBar, Tabbar, TabbarItem, Grid, GridItem, Card, Swipe, SwipeItem, Lazyload, Image, Stepper, Toast, Icon, List, PullRefresh, Cell, Notify, Field, ImagePreview, CellGroup, Tabs, Tab, Search, Tag, SubmitBar, SwipeCell, Row } from 'vant'
 
 Vue.use(Button)
 Vue.use(NavBar)
@@ -20,9 +7,27 @@ Vue.use(Tabbar)
 Vue.use(TabbarItem)
 Vue.use(Grid)
 Vue.use(GridItem)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Lazyload)
+Vue.use(Image)
+Vue.use(Stepper)
+Vue.use(Toast)
+Vue.use(Icon)
 Vue.use(Card)
 Vue.use(Image)
 Vue.use(List)
 Vue.use(PullRefresh)
-Vue.use(Toast)
 Vue.use(Cell)
+Vue.use(Notify)
+Vue.use(Field)
+Vue.use(ImagePreview)
+Vue.use(CellGroup)
+Vue.use(Tabs)
+Vue.use(Tab)
+Vue.use(Search)
+Vue.use(CellGroup)
+Vue.use(Tag)
+Vue.use(SubmitBar)
+Vue.use(SwipeCell)
+Vue.use(Row)
