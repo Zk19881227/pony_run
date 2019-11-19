@@ -23,7 +23,7 @@ const routes = [
   { path: '/shopcart', component: ShopCart },
   { path: '/search', component: Search },
   { path: '/newslist', component: NewsList },
-  { path: '/newslist/details', component: NewsDetails },
+  { path: '/newslist/details/:id', component: NewsDetails },
   { path: '/photosharing/list', component: PhotoSharingList },
   { path: '/photosharing/details', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },
@@ -31,7 +31,6 @@ const routes = [
   { path: '/messageboard', component: MessageBoard },
   { path: '/vedios', component: Vedios },
   { path: '/link', component: Link }
-  
 ]
 
 const router = new VueRouter({
