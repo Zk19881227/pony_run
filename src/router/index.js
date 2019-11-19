@@ -23,7 +23,7 @@ const routes = [
   { path: '/shopcart', component: ShopCart },
   { path: '/search', component: Search },
   { path: '/newslist', component: NewsList },
-  { path: '/newslist/details/:id', component: NewsDetails },
+  { path: '/news/details/:id', component: NewsDetails },
   { path: '/photosharing/list', component: PhotoSharingList },
   { path: '/photosharing/details', component: PhotoSharingDetails },
   { path: '/goods/list', component: GoodsList },

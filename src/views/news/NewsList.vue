@@ -1,18 +1,8 @@
 <template>
   <div>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        :offset="300"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
-        <van-cell
-          v-for="item in newslist"
-          :key="item.id"
-          @click="goNewsDetails(item.id)"
-        >
+      <van-list v-model="loading" :finished="finished" :offset="300" finished-text="没有更多了" @load="onLoad">
+        <van-cell v-for="item in newslist" :key="item.id" @click="goNewsDetails(item.id)">
           <div class="box">
             <div class="pic"><img :src="item.img_url" alt="" /></div>
             <div class="tt">
@@ -36,8 +26,7 @@ export default {
       newslist: [],
       loading: false, // 是否处于加载状态
       finished: false, // 是否已加载完所有数据
-      isLoading: false, // 是否处于下拉刷新状态
-      pageNumber: 0
+      isLoading: false // 是否处于下拉刷新状态
     }
   },
   created() {
@@ -46,17 +35,15 @@ export default {
   methods: {
     // 获取图文列表页面的数据
     async getNewsList() {
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getnewslist`
-      )
-      console.log(res)
+      const { data: res } = await this.$http.get(`/api/getnewslist`)
+      console.log(res.message)
       if (res.message.length >= 10) {
         for (let i = 0; i < 10; i++) {
           this.newslist.push(res.message[i])
         }
         this.loading = false
       } else {
-        this.newslist.push(res.message)
+        this.newslist = [...this.newslist, ...res.message]
       }
     },
     goNewsDetails(id) {
@@ -75,22 +62,19 @@ export default {
     },
     // 上拉加载
     async onLoad() {
-      this.pageNumber += 1
-      const { data: res } = await this.$http.get(
-        `http://www.liulongbin.top:3005/api/getnewslist`
-      )
-      
+      const { data: res } = await this.$http.get(`/api/getnewslist`)
+
       if (res.status === 0) {
         // this.loading = true
         setTimeout(() => {
-          for (let i = 0; i < 10; i++) {
-            this.newslist.push(res.message[i])
-          }
+          // for (let i = 0; i < 10; i++) {
+          //   this.newslist.push(res.message[i])
+          // }
           this.loading = false
           if (this.newslist.length >= res.message.length) {
             this.finished = true
           }
-        }, 500)
+        }, 800)
       }
     }
   }

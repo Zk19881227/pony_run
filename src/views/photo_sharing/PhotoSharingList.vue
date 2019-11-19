@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .img_list {
   padding: 0 10px;
 }
