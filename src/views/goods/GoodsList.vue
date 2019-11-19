@@ -71,7 +71,7 @@ export default {
           params: this.message.pageindex
         }
       )
-      console.log(res.message)
+      // console.log(res.message)
       this.list = res.message
     },
     // 下拉刷新
@@ -103,7 +103,7 @@ export default {
           // if (this.list.length >= res.message.length) {
           //   this.finished = true
           // }
-          this.message.number = 2
+          this.message.number += 1
           const { data: res } = await this.$http.get(
             `http://www.liulongbin.top:3005/api/getgoods?pageindex=${this.message.number}`,
             {
@@ -111,14 +111,16 @@ export default {
             }
           )
           // this.loading = false
+          // 把服务器第一页和第二页的数据通过...(拓展运算符)合并为一个新数组,赋值给列表数组
           this.list = [...this.list, ...res.message]
-          console.log(this.list)
+          // console.log(this.list)
           if (this.list.length >= res.message.length) {
             this.finished = true
           }
         }, 500)
       }
       console.log(res.status)
+      return false
     },
 
     // 跳转详情页
@@ -136,7 +138,7 @@ export default {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  margin: 10px 20px 40px 20px;
+  margin: 5px 10px;
 }
 
 .van-cell_value {
